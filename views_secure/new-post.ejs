@@ -1,0 +1,19 @@
+<%- include('layout', { body: '' }) %>
+<h2>New Post</h2>
+
+<% if (error) { %>
+  <p style="color:red;"><%= error %></p>
+<% } %>
+
+<form action="/posts" method="POST">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <div>
+    <label>Title:</label>
+    <input name="title">
+  </div>
+  <div>
+    <label>Content:</label>
+    <textarea name="content"></textarea>
+  </div>
+  <button type="submit">Create</button>
+</form>
