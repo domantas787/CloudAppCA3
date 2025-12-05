@@ -219,7 +219,7 @@ app.get('/posts/:id', (req, res) => {
   });
 });
 
-// add comment (INSECURE: stored XSS)
+// add comment (stored XSS)
 app.post('/posts/:id/comments', requireLogin, (req, res) => {
   const postId = req.params.id;
   const { content } = req.body;
@@ -241,13 +241,7 @@ app.post('/posts/:id/comments', requireLogin, (req, res) => {
   });
 });
 
-// --- DOM-BASED XSS DEMO PAGE ---
-app.get('/xss-demo', (req, res) => {
-  // Example page that uses query param in client-side JS innerHTML (see template)
-  res.render('xss-demo');
-});
-
-// generic error handler (INSECURE: shows stack)
+// error handler
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
   res.status(500).send(err.stack);
