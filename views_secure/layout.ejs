@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Secure Blog</title>
+</head>
+<body>
+  <header>
+    <h1>Secure Blog</h1>
+    <% if (user) { %>
+      <p>Logged in as <%= user.username %></p>
+      <form action="/logout" method="POST" style="display:inline;">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit">Logout</button>
+      </form>
+    <% } else { %>
+      <a href="/login">Login</a> | <a href="/register">Register</a>
+    <% } %>
+    <hr>
+  </header>
+
+  <%- body %>
+</body>
+</html>

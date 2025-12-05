@@ -1,0 +1,20 @@
+<%- include('layout', { body: '' }) %>
+<h2>Posts</h2>
+
+<form method="GET" action="/posts">
+  <input name="q" value="<%= q %>">
+  <button type="submit">Search</button>
+</form>
+
+<% if (user) { %>
+  <p><a href="/posts/new">Create new post</a></p>
+<% } %>
+
+<ul>
+  <% posts.forEach(p => { %>
+    <li>
+      <a href="/posts/<%= p.id %>"><%= p.title %></a>
+      by <%= p.username %> on <%= p.created_at %>
+    </li>
+  <% }) %>
+</ul>
