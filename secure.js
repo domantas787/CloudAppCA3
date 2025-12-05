@@ -1,5 +1,5 @@
 
-// secure version of the blog app with mitigations
+// secure version of the blog app
 
 const express = require('express');
 const path = require('path');
@@ -145,7 +145,7 @@ app.post('/register', async (req, res, next) => {
         if (err) {
           console.error('Register error:', err);
           return res.render('register', {
-            error: 'Could not register user (username may already exist).'
+            error: 'Could not register user.'
           });
         }
         logAction(this.lastID, 'register', req.ip, 'New user registered');
